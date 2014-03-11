@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class ReminderType extends AbstractType
+class ReminderIntervalType extends AbstractType
 {
     /**
      * {@inheritdoc}
@@ -14,14 +14,14 @@ class ReminderType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder->add(
-            'method',
-            'oro_reminder_method',
+            'number',
+            'integer',
             array('required' => true)
         );
 
         $builder->add(
-            'interval',
-            'oro_reminder_interval',
+            'unit',
+            'oro_reminder_interval_unit',
             array('required' => true)
         );
     }
@@ -33,8 +33,7 @@ class ReminderType extends AbstractType
     {
         $resolver->setDefaults(
             array(
-                'data_class' => 'Oro\\Bundle\\ReminderBundle\\Entity\\Reminder',
-                'intention' => 'reminder',
+                'data_class' => 'Oro\\Bundle\\ReminderBundle\\Model\\ReminderInterval',
                 'cascade_validation' => true,
             )
         );
@@ -45,6 +44,6 @@ class ReminderType extends AbstractType
      */
     public function getName()
     {
-        return 'oro_reminder';
+        return 'oro_reminder_interval';
     }
 }
